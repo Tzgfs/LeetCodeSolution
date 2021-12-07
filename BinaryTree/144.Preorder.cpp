@@ -14,7 +14,7 @@
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> preorderResult;
+        vector<int> orderResult;
         stack<TreeNode*> tStack;
         TreeNode* node = root;
         
@@ -27,7 +27,7 @@ public:
         {
             if(nodeState == lState)
             {
-                preorderResult.push_back(node->val);
+                orderResult.push_back(node->val); //前序
                 if(node->left != NULL)
                 {
                     tStack.push(node);
@@ -39,7 +39,7 @@ public:
             }
             else if(nodeState == rState)
             {
-                // preorderResult.push_back(node.val);
+                // orderResult.push_back(node->val); //中序
 
                 if(node->right != NULL)
                 {
@@ -53,6 +53,7 @@ public:
             }
             else if(nodeState == upState)
             {
+                // orderResult.push_back(node->val); //后序
                 TreeNode* parent = NULL;
 
                 if(!tStack.empty())
@@ -69,6 +70,6 @@ public:
             }
         }
 
-        return preorderResult;
+        return orderResult;
     }
 };
